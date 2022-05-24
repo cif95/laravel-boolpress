@@ -15,11 +15,15 @@
 
 								<span class="badge" style="background-color: {{$post->categories[0]->color}}">{{$post->categories[0]->name }}</span>
 								<a href="{{route('admin.posts.edit', $post)}}" class="btn btn-primary" role="button" aria-pressed="true">Edit</a>
-								<form action="{{route('admin.posts.destroy', $post)}}" method="put">
+
+								<form 
+								action="{{route('admin.posts.destroy', $post)}}"
+								method="post">
 									@csrf
 									@method('DELETE')
-									<a href="{{route('admin.posts.index')}}" class="btn btn-primary" role="button" aria-pressed="true">Delete</a>
+									<button type="submit" class="btn btn-outline-danger">Delete</button>
 								</form>
+								
 								<h5 class="card-title">{{ $post->title}}</h5>
 								<h6 class="card-subtitle">Author: {{ $post->author}}</h6>
 								<a href="{{ route('admin.posts.show', $post) }}" class="btn btn-primary">More info</a>
