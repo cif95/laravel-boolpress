@@ -32,7 +32,7 @@
             <label for="title">Title</label>
             <input type="text" name="title" id="title" class="form-control" value="{{$post->title}}">
 			</div>
-        <div class="col">
+        <div class="col py-2">
             <label for="description">Description</label>
             <textarea type="text" name="description" id="description" class="form-control">{{$post->description}}</textarea>
         </div>
@@ -41,23 +41,21 @@
             <input type="text" name="image_url" id="image_url" class="form-control" value="{{$post->image_url}}">
         </div>
 
-				<div class="col">
+        <div class="col py-2">
+            <select class="form-select" name="category">
+                <option selected>Open this select menu</option>
+                @foreach ($categories as $category)
+                <option 
+                    value="{{$category->id}}"
+                    {{ ($category->id === $post->categories[0]->id) ? 'selected' : ''}}
+                >
+                    {{$category->name}}
+                </option>
+                @endforeach
+            </select>
+        </div> 
 
-					<select class="form-select" name="category">
-						<option selected>Open this select menu</option>
-						@foreach ($categories as $category)
-						<option 
-							value="{{$category->id}}"
-							{{ ($category->id === $post->categories[0]->id) ? 'selected' : ''}}
-						>
-							{{$category->name}}
-						</option>
-						@endforeach
-					</select>
-
-				</div> 
-
-        <div class="col text-center pt-4">
+        <div class="col text-center">
             <button type="submit" class="btn btn-primary">Send</button>
         </div>  
     </form>

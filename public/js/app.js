@@ -49796,6 +49796,16 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+var deleteForms = document.querySelectorAll('.delete-form');
+deleteForms.forEach(function (form) {
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    if (window.confirm("Do you want to cancel ".concat(this.getAttribute('post-title'), "?"))) {
+      this.submit();
+    }
+  });
+});
 
 /***/ }),
 
@@ -49931,8 +49941,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Boolean\laravel-auth\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Boolean\laravel-auth\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Boolean\laravel-many-to-many\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Boolean\laravel-many-to-many\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
