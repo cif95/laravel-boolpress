@@ -19,7 +19,7 @@ class CategoryPostTableSeeder extends Seeder
         $posts = Post::all();
 
         foreach ($posts as $post) {
-            $post->categories()->sync( $faker->randomElements($categoryIds, 3 ) );
+            $post->categories()->sync( $faker->randomElement($categoryIds ) );
         }
 
     }

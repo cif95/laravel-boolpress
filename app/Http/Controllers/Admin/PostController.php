@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -26,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -37,7 +40,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'title' => 'required|max:100|min:4',
+            'description' => 'required|max:250|min:50',
+            'image_url' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        $data['author'] = Auth::user()['name'];
+
+        $newPost = new Post();
+        $newPost->categories()->sync($data['category']);
+        $newPost->fill($data);
+        $newPost->save();
+
+        return redirect()->route("admin.posts.index")->with('message', 'Post created correctly');
     }
 
     /**
@@ -54,34 +73,50 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        return view('admin.posts.edit', ['categories'=> $categories, 'post' => $post]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        
+        $request->validate([
+            'title' => 'required|max:100|min:4',
+            'description' => 'required|max:250|min:50',
+            'image_url' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        $data['author'] = Auth::user()['name'];
+        $post->categories()->sync($data['category']);
+        $post->update($data);
+
+        return redirect()->route("admin.posts.show", $post)->with('message', 'Post updated correctly');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route("admin.posts.index")->with('message', 'Post deleted correctly');
+
     }
 }
