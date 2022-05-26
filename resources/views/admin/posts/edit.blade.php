@@ -14,7 +14,7 @@
 
 
     <form class="row row-cols-4 g-3 flex-column align-items-center" action="{{route("admin.posts.update", $post)}}" method="POST">
-      @method('PUT')  
+        @method('PUT')  
 			@csrf
         <div class="col">
             <h2>
