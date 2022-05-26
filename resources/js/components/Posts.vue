@@ -1,6 +1,11 @@
 <template>
-	<div class="row row-cols-3">
-		<Post v-for="(post, index) in posts" :key=index :post="post" />
+	<div class="row justify-content-center">
+		<Post
+			class="col-7"
+			v-for="(post, index) in posts"
+			:key=index
+			:post="post"
+		/>
 	</div>
 </template>
 
@@ -27,7 +32,8 @@ export default {
 			.catch((error)=>{
 				console.log(error);
 			})
-		}
+		},
+
 	},
 	created() {
 		this.getPosts();

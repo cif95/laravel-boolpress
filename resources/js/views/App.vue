@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid">
+	<div class="container-fluid p-5">
 		<Posts />
 	</div>
 </template>
@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+div.container-fluid {
+	background-color: #3e3e3e;
+}
 </style>
