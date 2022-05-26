@@ -1,14 +1,17 @@
 <template>
-	<div>
-		<h2>Vue!</h2>
+	<div class="container-fluid">
+		<Posts />
 	</div>
 </template>
 
 <script>
+
+import Posts from '../components/Posts.vue';
+
 export default {
 	name: 'App',
 	components: {
-
+		Posts,
 	}
 }
 </script>
