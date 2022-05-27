@@ -1,12 +1,14 @@
 <template>
-	<div class="row justify-content-center">
+<div class="container-fluid">
+	<div class="row justify-content-center py-5">
 		<Post
-			class="col-7"
+			class="col-7 py-5"
 			v-for="(post, index) in posts"
 			:key=index
 			:post="post"
 		/>
 	</div>
+</div>
 </template>
 
 <script>
@@ -42,5 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+	div.container-fluid {
+		background-color: #3e3e3e;
+	}
 </style>

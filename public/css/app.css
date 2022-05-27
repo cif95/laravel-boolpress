@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap);@charset "UTF-8";
 /*!
  * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -20306,4 +20306,26 @@ div.card .card-controls .btn {
 
 .badge {
   color: white;
+}
+
+@-webkit-keyframes slowEntrance {
+  from {
+    filter: opacity(1);
+    transform: scale(1);
+  }
+  to {
+    filter: opacity(0);
+    transform: scale(0.5);
+  }
+}
+
+@keyframes slowEntrance {
+  from {
+    filter: opacity(1);
+    transform: scale(1);
+  }
+  to {
+    filter: opacity(0);
+    transform: scale(0.5);
+  }
 }

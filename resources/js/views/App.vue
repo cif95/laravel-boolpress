@@ -20,5 +20,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+* {
+	font-size: 102%;
+	font-family: 'Quicksand', sans-serif;
+}
 </style>

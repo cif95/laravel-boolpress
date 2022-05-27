@@ -1,7 +1,5 @@
 <template>
-	<div class="container-fluid py-5">
-		<router-view></router-view>
-	</div>
+	<router-view></router-view>
 </template>
 
 <script>
@@ -11,7 +9,4 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-	div.container-fluid {
-		background-color: #3e3e3e;
-	}
 </style>

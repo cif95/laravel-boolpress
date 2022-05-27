@@ -1,20 +1,20 @@
 <template>
-	<div class="my-card position-relative mb-5">
+	<div class="my-card mb-5">
 		<div
-		class="my-card-img text-center p-2 mx-auto"
+		class="my-card-img text-center p-2 mx-auto position-relative"
 		@mouseover="showContent()"
 		@mouseleave="hideContent()"
 		>
 			<img :src="post.image_url" class="img-fluid" :alt="`${post.title} post image`">
-		</div>
-		<div v-if="isMouseOver" class="my-card-content position-absolute text-white">
-			<h5 class="card-title">{{ firstUppercase(post.title) }}</h5>
-			<p class="card-text">
-				{{post.description}}
-			</p>
-			<p class="card-text">
-				Created on: {{ getDateFormat(post.created_at) }}
-			</p>
+			<div v-if="isMouseOver" class="my-card-content position-absolute text-white">
+				<h5 class="card-title">{{ firstUppercase(post.title) }}</h5>
+				<p class="card-text">
+					{{post.description}}
+				</p>
+				<p class="card-text">
+					Created on: {{ getDateFormat(post.created_at) }}
+				</p>
+			</div>
 		</div>
 	</div>
 </template>
@@ -57,25 +57,28 @@ export default {
 <style lang="scss" scoped>
 
 div.my-card {
+	&:hover div.my-card-img img{
+		filter: blur(5px) brightness(35%);
+	}
 	.my-card-img {
 		width: 65%;
 		img {
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.322);
 			-webkit-transition : -webkit-filter 700ms ease-in-out;
-			transition: filter 1s;
+			transition: filter 1s ease-in-out;
 			border-radius: 50%;
 			filter: blur(0px) brightness(100%);
-			&:hover {
-				filter: blur(5px) brightness(35%);
-			}
 		}
 	}
 	.my-card-content {
+		width: 50%;
 		top: 50%;
 		left: 50%;
 		font-weight: bold;
 		transform: translate(-50%, -50%);
 		p {
 			font-style: italic;
+			z-index: 2;
 		}
 	}
 }
