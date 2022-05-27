@@ -58,10 +58,10 @@ export default {
 
 div.my-card {
 	.my-card-img {
-		width: 80%;
+		width: 65%;
 		img {
 			-webkit-transition : -webkit-filter 700ms ease-in-out;
-			transition: filter 700ms ease-in-out;
+			transition: filter 1s;
 			border-radius: 50%;
 			filter: blur(0px) brightness(100%);
 			&:hover {

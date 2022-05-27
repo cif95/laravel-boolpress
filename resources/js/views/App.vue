@@ -1,23 +1,24 @@
 <template>
-	<div class="container-fluid p-5">
-		<Posts />
+	<div>
+		<Header />
+		<Main />
 	</div>
 </template>
 
 <script>
 
-import Posts from '../components/Posts.vue';
+import Header from '../components/Header.vue';
+import Main from '../components/Main.vue';
+
 
 export default {
 	name: 'App',
 	components: {
-		Posts,
+		Header,
+		Main
 	}
 }
 </script>
 
 <style lang="scss" scoped>
-div.container-fluid {
-	background-color: #3e3e3e;
-}
 </style>

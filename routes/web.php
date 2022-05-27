@@ -16,4 +16,4 @@ Route::middleware('auth')
     Route::resource('posts', 'PostController');
 });
 
-Route::get('/{any}', 'HomeController@index')->where('any','.*');
+// Route::get('/{any}', 'HomeController@index')->where('any','.*');
