@@ -2115,30 +2115,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Posts',
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      res_pages: {}
     };
   },
   components: {
     Post: _components_Post_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts(page) {
       var _this = this;
 
-      axios.get('http://localhost:8000/api/posts').then(function (result) {
-        _this.posts = result.data.results;
+      axios.get("http://localhost:8000/api/posts?page=".concat(page)).then(function (result) {
+        _this.posts = result.data.data;
+        console.log(result);
+        var _result$data = result.data,
+            current_page = _result$data.current_page,
+            last_page = _result$data.last_page;
+        _this.res_pages = {
+          currPage: current_page,
+          lastPage: last_page
+        };
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
   created: function created() {
-    this.getPosts();
+    this.getPosts(1);
   }
 });
 
@@ -2186,7 +2215,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "div.my-card:hover div.my-card-img img[data-v-5e8280ea] {\n  filter: blur(5px) brightness(35%);\n}\ndiv.my-card .my-card-img[data-v-5e8280ea] {\n  width: 65%;\n}\ndiv.my-card .my-card-img img[data-v-5e8280ea] {\n  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.322);\n  transition: filter 1s ease-in-out;\n  border-radius: 50%;\n  filter: blur(0px) brightness(100%);\n}\ndiv.my-card .my-card-content[data-v-5e8280ea] {\n  width: 50%;\n  top: 50%;\n  left: 50%;\n  font-weight: bold;\n  transform: translate(-50%, -50%);\n}\ndiv.my-card .my-card-content p[data-v-5e8280ea] {\n  font-style: italic;\n  z-index: 2;\n}", ""]);
+exports.push([module.i, "div.my-card:hover div.my-card-img img[data-v-5e8280ea] {\n  filter: blur(5px) brightness(35%);\n}\ndiv.my-card .my-card-img[data-v-5e8280ea] {\n  width: 65%;\n}\ndiv.my-card .my-card-img img[data-v-5e8280ea] {\n  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.322);\n  transition: filter 1s ease-in-out;\n  border-radius: 50%;\n  filter: blur(0px) brightness(100%);\n}\ndiv.my-card .my-card-content[data-v-5e8280ea] {\n  width: 50%;\n  max-height: 80%;\n  top: 50%;\n  left: 50%;\n  font-weight: bold;\n  transform: translate(-50%, -50%);\n}\ndiv.my-card .my-card-content p[data-v-5e8280ea] {\n  font-style: italic;\n}", ""]);
 
 // exports
 
@@ -2224,7 +2253,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "div.container-fluid[data-v-1a53229a] {\n  background-color: #3e3e3e;\n}", ""]);
+exports.push([module.i, "div.container-fluid[data-v-1a53229a] {\n  background-color: #3e3e3e;\n}\ndiv#pagination[data-v-1a53229a] {\n  position: fixed;\n  left: 1rem;\n  top: 50%;\n  transform: translateY(-50%);\n}\ndiv#pagination ul[data-v-1a53229a] {\n  color: white;\n  width: 100px;\n  font-size: 1.5rem;\n}", ""]);
 
 // exports
 
@@ -3740,18 +3769,76 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "container-fluid position-relative" }, [
     _c(
       "div",
       { staticClass: "row justify-content-center py-5" },
-      _vm._l(_vm.posts, function (post, index) {
-        return _c("Post", {
-          key: index,
-          staticClass: "col-7 py-5",
-          attrs: { post: post },
-        })
-      }),
-      1
+      [
+        _c(
+          "div",
+          { staticClass: "col-12 text-center", attrs: { id: "pagination" } },
+          [
+            _c("nav", { attrs: { "aria-label": "Page navigation" } }, [
+              _c("ul", { staticClass: "pagination flex-column" }, [
+                _vm.res_pages.currPage > 1
+                  ? _c(
+                      "li",
+                      {
+                        staticClass: "page-item",
+                        on: {
+                          click: function ($event) {
+                            return _vm.getPosts(_vm.res_pages.currPage - 1)
+                          },
+                        },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa-solid fa-circle-chevron-left",
+                        }),
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("li", { staticClass: "page-item" }, [
+                  _vm._v(
+                    "\r\n\t\t\t\t\t\t" +
+                      _vm._s(_vm.res_pages.currPage) +
+                      "\r\n\t\t\t\t\t"
+                  ),
+                ]),
+                _vm._v(" "),
+                _vm.res_pages.currPage < _vm.res_pages.lastPage
+                  ? _c(
+                      "li",
+                      {
+                        staticClass: "page-item",
+                        on: {
+                          click: function ($event) {
+                            return _vm.getPosts(_vm.res_pages.currPage + 1)
+                          },
+                        },
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fa-solid fa-circle-chevron-right",
+                        }),
+                      ]
+                    )
+                  : _vm._e(),
+              ]),
+            ]),
+          ]
+        ),
+        _vm._v(" "),
+        _vm._l(_vm.posts, function (post, index) {
+          return _c("Post", {
+            key: index,
+            staticClass: "col-7 py-5",
+            attrs: { post: post },
+          })
+        }),
+      ],
+      2
     ),
   ])
 }
@@ -19363,7 +19450,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
+/* harmony import */ var _views_App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Home */ "./resources/js/pages/Home.vue");
 /* harmony import */ var _pages_Posts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Posts */ "./resources/js/pages/Posts.vue");
@@ -19396,7 +19483,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 var app = new Vue({
   el: '#root',
   render: function render(h) {
-    return h(_views_App__WEBPACK_IMPORTED_MODULE_0__["default"]);
+    return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   },
   router: router
 });

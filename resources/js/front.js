@@ -5,7 +5,7 @@ window.Vue = require('vue');
 // import router from './router';
 
 
-import App from "./views/App";
+import App from "./views/App.vue";
 import VueRouter from 'vue-router';
 import Home from './pages/Home';
 import Posts from './pages/Posts';

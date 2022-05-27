@@ -72,13 +72,13 @@ div.my-card {
 	}
 	.my-card-content {
 		width: 50%;
+		max-height: 80%;
 		top: 50%;
 		left: 50%;
 		font-weight: bold;
 		transform: translate(-50%, -50%);
 		p {
 			font-style: italic;
-			z-index: 2;
 		}
 	}
 }
