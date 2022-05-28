@@ -17,7 +17,7 @@ class PostsTableSeeder extends Seeder
             $newPost = new Post();
             $newPost->title = $faker->words(3, true);
             $newPost->author = $faker->name();
-            $newPost->description = $faker->realText(500);
+            $newPost->description = $faker->realText(250);
             $newPost->image_url = "https://picsum.photos/900?random=" . $i;
             $newPost->save();
         }

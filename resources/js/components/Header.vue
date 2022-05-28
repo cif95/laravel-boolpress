@@ -48,6 +48,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+header {
+	height: 60px;
+	a.navbar-brand {
+		font-family: 'Major Mono Display', monospace;
+		padding-right: 0.2rem;
+		border-right: 1px solid rgba(0, 0, 0, 0.822);
+	}
+	.nav-link {
+		text-transform: uppercase;
+		font-family: 'Quicksand', sans-serif;
+	}
+}
 
 </style>

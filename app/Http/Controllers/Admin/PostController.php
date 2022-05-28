@@ -52,9 +52,11 @@ class PostController extends Controller
         $data['author'] = Auth::user()['name'];
 
         $newPost = new Post();
-        $newPost->categories()->sync($data['category']);
+        
         $newPost->fill($data);
         $newPost->save();
+
+        $newPost->categories()->attach($data['category']);
 
         return redirect()->route("admin.posts.index")->with('message', 'Post created correctly');
     }

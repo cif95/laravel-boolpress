@@ -39,8 +39,9 @@
 
 								<h5 class="card-title">{{ $post->title}}</h5>
 								<h6 class="card-subtitle">Author: {{ $post->author}}</h6>
-								<span class="badge" style="background-color: {{$post->categories[0]->color}}">{{$post->categories[0]->name }}</span>
-
+								@foreach ($post->categories as $category)
+									<span class="badge" style="background-color: {{$category->color}}">{{ $category->name }}</span>
+								@endforeach
 							</div>
 						</div>
 					</div>

@@ -8,12 +8,11 @@
 			<img :src="post.image_url" class="img-fluid" :alt="`${post.title} post image`">
 			<div v-if="isMouseOver" class="my-card-content position-absolute text-white">
 				<h5 class="card-title">{{ firstUppercase(post.title) }}</h5>
-				<p class="card-text">
-					{{post.description}}
-				</p>
+				<p>{{post.author}}</p>
 				<p class="card-text">
 					Created on: {{ getDateFormat(post.created_at) }}
 				</p>
+				<router-link class="btn btn-outline-light" :to="{ name: 'post_detail', params: { id: post.id }}">View</router-link>
 			</div>
 		</div>
 	</div>
@@ -61,7 +60,7 @@ div.my-card {
 		filter: blur(5px) brightness(35%);
 	}
 	.my-card-img {
-		width: 65%;
+		width: 50%;
 		img {
 			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.322);
 			-webkit-transition : -webkit-filter 700ms ease-in-out;
@@ -71,7 +70,7 @@ div.my-card {
 		}
 	}
 	.my-card-content {
-		width: 50%;
+		width: 42%;
 		max-height: 80%;
 		top: 50%;
 		left: 50%;

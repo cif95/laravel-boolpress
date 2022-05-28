@@ -7,6 +7,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+
 Route::middleware('auth')
 ->namespace('Admin')
 ->prefix('admin')
@@ -16,4 +17,4 @@ Route::middleware('auth')
     Route::resource('posts', 'PostController');
 });
 
-// Route::get('/{any}', 'HomeController@index')->where('any','.*');
+Route::get('/{any}', 'HomeController@index')->where('any','.*');

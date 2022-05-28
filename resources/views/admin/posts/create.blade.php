@@ -41,12 +41,19 @@
         </div>
 
         <div class="col py-2">
-            <select class="form-select" name="category">
-                <option selected>Open this select menu</option>
-                @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
-                @endforeach
-            </select>
+            @foreach ($categories as $category)
+            <div class="form-check">
+                <input 
+                class="form-check-input"
+                type="checkbox"
+                value="{{ $category->id }}" 
+                name="category[]" 
+                >
+                <label class="form-check-label" for="flexCheckDefault">
+                    <span class="badge rounded-pill mb-3" style="background-color: {{$category->color}}">{{$category->name}}</span>
+                </label>
+            </div>
+            @endforeach
         </div> 
 
         <div class="col text-center pt-4">

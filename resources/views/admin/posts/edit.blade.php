@@ -42,17 +42,20 @@
         </div>
 
         <div class="col py-2">
-            <select class="form-select" name="category">
-                <option selected>Open this select menu</option>
-                @foreach ($categories as $category)
-                <option 
-                    value="{{$category->id}}"
-                    {{ ($category->id === $post->categories[0]->id) ? 'selected' : ''}}
+            @foreach ($categories as $category)
+            <div class="form-check">
+                <input 
+                class="form-check-input"
+                type="checkbox"
+                value="{{ $category->id }}" 
+                name="category[]"
+                {{ $post->categories->contains($category) ? 'checked' : ''}} 
                 >
-                    {{$category->name}}
-                </option>
-                @endforeach
-            </select>
+                <label class="form-check-label" for="flexCheckDefault">
+                    <span class="badge rounded-pill mb-3" style="background-color: {{$category->color}}">{{$category->name}}</span>
+                </label>
+            </div>
+            @endforeach
         </div> 
 
         <div class="col text-center">
