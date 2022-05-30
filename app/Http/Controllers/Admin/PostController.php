@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
@@ -40,24 +41,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
+        // validation
         $request->validate([
             'title' => 'required|max:100|min:4',
             'description' => 'required|max:250|min:50',
-            'image_url' => 'required',
+            'image' => 'required|max:2048',
         ]);
 
         $data = $request->all();
 
         $data['author'] = Auth::user()['name'];
 
+
         $newPost = new Post();
         
         $newPost->fill($data);
+
+        // input file upload
+        $newPost->image_url = Storage::put('uploads', $data['image']);
+
+        // save the new post
         $newPost->save();
 
+        // add the selected categories to the new post
         $newPost->categories()->attach($data['category']);
 
+        // route redirect with message
         return redirect()->route("admin.posts.index")->with('message', 'Post created correctly');
     }
 
@@ -97,13 +106,15 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:100|min:4',
             'description' => 'required|max:250|min:50',
-            'image_url' => 'required',
+            'image' => 'required|max:2048',
         ]);
 
         $data = $request->all();
 
         $data['author'] = Auth::user()['name'];
         $post->categories()->sync($data['category']);
+        // input file upload
+        $post->image_url = Storage::put('uploads', $data['image']);
         $post->update($data);
 
         return redirect()->route("admin.posts.show", $post)->with('message', 'Post updated correctly');

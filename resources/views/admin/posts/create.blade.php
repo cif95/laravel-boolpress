@@ -13,7 +13,7 @@
 	</div>
 
 
-    <form class="row row-cols-4 g-3 flex-column align-items-center" action="{{route("admin.posts.store")}}" method="POST">
+    <form class="row row-cols-4 g-3 flex-column align-items-center" action="{{route("admin.posts.store")}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="col">
             <h2>
@@ -36,8 +36,8 @@
             <textarea type="text" name="description" id="description" class="form-control"></textarea>
         </div>
         <div class="col">
-            <label for="image_url">Image url</label>
-            <input type="text" name="image_url" id="image_url" class="form-control">
+            <label for="image">Image file</label>
+            <input type="file" name="image" id="image" class="form-control">
         </div>
 
         <div class="col py-2">

@@ -13,7 +13,11 @@
 				@forelse ($posts as $post)
 					<div class="col mb-3 p-5">
 						<div class="card">
-							<img src="{{ $post->image_url}}" class="card-img-top" alt="Post image of {{ $post->author }}">
+							<img 
+								src="{{ str_starts_with($post->image_url, 'http') ? $post->image_url : asset('storage') . '/' . $post->image_url}}"
+								class="card-img-top"
+								alt="Post image of {{ $post->author }}"
+							>
 							<div class="card-body">
 								
 								<div class="card-controls d-flex mx-auto">

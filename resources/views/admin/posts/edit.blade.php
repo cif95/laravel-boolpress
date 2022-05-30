@@ -13,7 +13,7 @@
 	</div>
 
 
-    <form class="row row-cols-4 g-3 flex-column align-items-center" action="{{route("admin.posts.update", $post)}}" method="POST">
+    <form class="row row-cols-4 g-3 flex-column align-items-center" action="{{route("admin.posts.update", $post)}}" method="POST" enctype="multipart/form-data">
         @method('PUT')  
 			@csrf
         <div class="col">
@@ -37,8 +37,8 @@
             <textarea type="text" name="description" id="description" class="form-control">{{$post->description}}</textarea>
         </div>
         <div class="col">
-            <label for="image_url">Image url</label>
-            <input type="text" name="image_url" id="image_url" class="form-control" value="{{$post->image_url}}">
+            <label for="image">Image file</label>
+            <input type="file" name="image" id="image" class="form-control">
         </div>
 
         <div class="col py-2">
