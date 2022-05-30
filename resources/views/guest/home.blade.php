@@ -10,6 +10,9 @@
     <title>Guest Home</title>
 </head>
 <body>
+    @if (session('message'))
+    <div class="alert alert-success">{{session('message')}}</div>
+    @endif
     <div id="root"></div>
     <script src="{{ asset('js/front.js')}}"></script>
 </body>
